@@ -26,7 +26,7 @@ int main (int argc, char *argv[]) {
     //unsigned char color_bajo[] = {0,0,55};
     //unsigned char color_alto[] = {255,255,44};
 
-//cargo en bgr y convierto imagen a csv
+//cargo en bgr y convierto imagen a csv    che agus ¿porque bgr?
     Img = imread(argv[1],CV_LOAD_IMAGE_COLOR);
     if (!Img.data){
         puts("error");
