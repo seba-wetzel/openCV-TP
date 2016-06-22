@@ -26,7 +26,7 @@ int main (int argc, char *argv[]) {
     //unsigned char color_bajo[] = {0,0,55};
     //unsigned char color_alto[] = {255,255,44};
 
-//cargo en bgr y convierto imagen a csv    che agus ¿porque bgr?
+//cargo en bgr y convierto imagen a csv
     Img = imread(argv[1],CV_LOAD_IMAGE_COLOR);
     if (!Img.data){
         puts("error");
@@ -36,21 +36,34 @@ int main (int argc, char *argv[]) {
 
     //printf("%i\n",Img.channels());
 
-    cvtColor(Img,ImgHSV,CV_BGR2HSV,3);
+    cvtColor(Img,ImgHSV,COLOR_BGR2HSV);
     if (!ImgHSV.data)
             return ERROR_IMG_CSV;
     puts("cargo");
 
-    //namedWindow( "ImgHSV", WINDOW_AUTOSIZE );
-    //imshow("ImgHSV", ImgHSV);
 
-    inRange (ImgHSV, Scalar (0,0,0), Scalar (255,255,44) , msk);
+    inRange (Img, Scalar (0,0,250), Scalar (0,0,255) , msk);
 
-    mom=moments(msk,false);
-    //queria ver el tamanio del area
+
+    mom=moments(msk,true);
+
+    //valor del area
     printf("%s %lf\n","area",mom.m00);
     //
     area = mom.m00;
+
+
+    //Pantallas de testeo
+    namedWindow( "mask", WINDOW_AUTOSIZE );
+    imshow("mask", msk);
+
+    //namedWindow( "ImgHSV", WINDOW_AUTOSIZE );
+    //imshow("ImgHSV", ImgHSV);
+
+    namedWindow( "Img", WINDOW_AUTOSIZE );
+    imshow("Img", Img);
+
+   //
 
     if(area>100)
         printf("negro\n");
