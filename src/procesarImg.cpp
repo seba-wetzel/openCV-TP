@@ -2,7 +2,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "iostream"
-#include <typedefs.h>
+#include "typedefs.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
