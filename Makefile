@@ -20,9 +20,10 @@ OBJS := $(subst $(SRC_PATH),$(OBJ_PATH),$(SOURCES:.cpp=.o))
 OBJ_FILES := $(notdir $(OBJS))
 
 
+#regla all para compatibilizar con eclipse out of the box
+all: $(EJECUTABLE)
 
-
-#regla de compilacion
+#regla de compilacio
 %.o: %.cpp
 	g++ -Wall -c $< -o $(OBJ_PATH)/$@ -I $(INC_PATH)
 
