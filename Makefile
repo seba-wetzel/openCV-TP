@@ -7,7 +7,7 @@ OUT_PATH := out
 OBJ_PATH := $(OUT_PATH)/obj
 
 #de ser necesarias mas librerias de opencv, agregarlas aca
-LIBS := -lopencv_imgproc -lopencv_core -lopencv_highgui
+LIBS := $(shell pkg-config --libs opencv)
 
 
 
@@ -25,21 +25,22 @@ all: $(EJECUTABLE)
 
 #regla de compilacio
 %.o: %.cpp
-	g++ -Wall -c $< -o $(OBJ_PATH)/$@ -I $(INC_PATH)
+	g++ -Wall -I $(INC_PATH) `pkg-config --cflags opencv` -c $< -o $(OBJ_PATH)/$@ 
 
 #regla de linkeo y generacion de direcctorios de salida (si no existen)
 $(EJECUTABLE): $(OBJ_PATH) | $(OBJ_FILES)
-	g++ $(OBJS) $(LIBS) -o $(OUT_PATH)/$(EJECUTABLE)
+	g++ `pkg-config --cflags --libs opencv` $(OBJS)  -o $(OUT_PATH)/$(EJECUTABLE)
 
 
 #regla clean
 clean:
-	rm -f $(OBJS) $(OUT_PATH)/$(EJECUTABLE)
+	rm -rf $(OUT_PATH)
 
 #make info para ver variables
 info:
 	@echo $(SOURCES)
 	@echo $(OBJS)
+	@echo $(LIBS)
 
 #pre-requisito para poder compilar, es que existan los directorios de salida, si no existen, se crean
 $(OBJ_PATH):

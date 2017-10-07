@@ -1,12 +1,13 @@
-#include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include "iostream"
-#include "typedefs.h"
+#define _GLIBCXX_USE_CXX11_ABI 1
 #include <stdio.h>
+#include <iostream>
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include "typedefs.h"
 #include <stdlib.h>
-#include <string>
+#include <string.h>
 
+#include "manejoImagen.h"
 
 #include <diccionarioColor.h>
 
@@ -16,7 +17,6 @@
 Scalar myFuncionMax(color_t);
 Scalar myFuncionMin(color_t);
 
-using namespace std;
 
 estado_t procesarImg(img_t * img, const char * a){
     Mat ImgHSV;
